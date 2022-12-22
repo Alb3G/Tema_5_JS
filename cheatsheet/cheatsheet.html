@@ -5,14 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cheatsheet JS</title>
+    <style>
+        a {
+            font-size: 3em;
+            display: block;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    
+    <h1>Procesar javascript</h1>
+    <!-- JS inline -->
+    <a href="#" onclick="alert('hola desde un scprit inline')">⇾Inline script</a>
+    <a href="#">⇾Internal script</a>
+    <a href="#">⇾External script</a>
 
-
+    <!-- JS interno -->
     <script>
-        let x = 1;
+        //let x = 1;
         console.log("Hola Mundo!", x );
+
+        function saludo () {
+            alert('Hola desde un script interno');
+            console.log('Has hecho click');
+        }
+
+        document.getElementsByTagName("a").item(1).addEventListener("click", saludo);
     </script>
+    <!-- JS Externo -->
+    <script src=".//js/main.js"></script>
 </body>
 </html>
