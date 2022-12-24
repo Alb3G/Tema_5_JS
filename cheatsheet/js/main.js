@@ -88,3 +88,19 @@ console.clear();
 //------------------ Strings -------------------
 str = "hola futuro";
 console.log(str, str.length);
+console.log(str.indexOf("futuro"));
+console.log('La ultima vez que aparece "u" es en el indice',str.lastIndexOf("u"));
+
+console.log(str.substring(1,3));
+
+console.log("Hola mundo".concat(" adios mundo."));
+console.log("Hola mundo" + " Adios mundo.");//Otra forma de concat
+
+str = str + ". Adios Mundo";
+str += ". Adios Mundo";
+console.log(str);
+console.log(str.replaceAll("Mundo", "futuro"));
+console.log(str.toLowerCase());
+console.log(str.toUpperCase());
+
+
