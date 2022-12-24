@@ -27,8 +27,8 @@ saludar();
 
 console.clear();
 //------------------ Inicializacion -------------------
-let day;
-day = 5;
+let day = 5;
+// day = 5;
 
 let monthName = "Diciembre"
 
@@ -102,5 +102,18 @@ console.log(str);
 console.log(str.replaceAll("Mundo", "futuro"));
 console.log(str.toLowerCase());
 console.log(str.toUpperCase());
+
+console.log(`el dia de mi cumple es el ${day}`);
+
+//------ Parsing / Conversion de un tipo a otro ------
+let number = Number('1000s');//NaN = Not a number. no genera error pero no podremos operar con ese dato.
+console.log(number, typeof number);
+
+number = Number('1000');
+console.log(number, typeof number);
+
+number += "1000";//number += Number("1000"); Tendria que llevar el constructor Number para que nos pasara el string a numero
+console.log(number, typeof number);
+
 
 
