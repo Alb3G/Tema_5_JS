@@ -115,5 +115,42 @@ console.log(number, typeof number);
 number += "1000";//number += Number("1000"); Tendria que llevar el constructor Number para que nos pasara el string a numero
 console.log(number, typeof number);
 
+console.log("1" + 1, "1" - 1);//primer caso transforma el numero a string y concatena, segundo caso transforma el string a number y los resta.
 
+console.clear();
+//------------------ Objects -------------------
+let person = {
+    //key : value, es la forma de representar propiedades a la hora de crear un objeto.
+    name: "Jhon",
+    age: 30,
+    blonde: false,
+    walk: function() {
+        console.log('Hey estoy saltando');
+    },
+    jump() {//Pre ES6
+        console.log('Hey estoy saltando');
+    }//ES6
+}
+//------ Acceso por punto / Dot notation ------
+console.log(person);
+console.log(`Se llama ${person.name} y tiene ${person.age} años`);
+
+person.name = "Jane";
+
+console.log(person);
+console.log(`Se llama ${person.name} y tiene ${person.age} años`);
+
+//------ Acceso por corchetes / Brackets notation ------
+let propertyName = "age";
+console.log(person[propertyName]);
+
+//------------------ Ampliacion -------------------
+person.children = ["Marta", "Peter"];
+console.log(person);
+console.log(person.children[1]);
+
+/*console.log(`${person.name},tiene ${person.children.length} hijos y sus nombres son  ${person.children[0]} y ${person.children[1]}`)*/
+
+person.jump();
+person.walk();
 
