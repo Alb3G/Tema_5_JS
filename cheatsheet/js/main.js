@@ -11,9 +11,9 @@ document.getElementsByTagName("a").item(2).addEventListener("click", saludo);
 console.log("Mensaje");
 
 //------------------ Variables -------------------
-//var -> function scpope //let & const(usarla siempre a noser que vayamos a modificarla despues) -> block scope
+//var -> function scope //let & const(usarla siempre a noser que vayamos a modificarla despues) -> block scope
 
-function saludar() {
+function saludar () {
     console.log("Inicial: ", contador);
     //Comprobar con var y con let y ver diferencias
     for (var contador = 0; contador < 3; contador++ ) {
@@ -124,10 +124,10 @@ let person = {
     name: "Jhon",
     age: 30,
     blonde: false,
-    walk: function() {
+    walk: function() {//Pre ES6
         console.log('Hey estoy saltando');
     },
-    jump() {//Pre ES6
+    jump() {
         console.log('Hey estoy saltando');
     }//ES6
 }
@@ -154,3 +154,70 @@ console.log(person.children[1]);
 person.jump();
 person.walk();
 
+//------ This ------
+const person2 = {
+    name:"Alberto",
+    talk () {
+        console.log(this);
+        console.log(`Me llamo ${this.name}`);//person2 lo sustituimos por this
+    }
+}
+// this hace referencia al objeto en el que se encuentre
+const person3 = {
+    name:"Marina",
+    talk () {
+        console.log(this);
+        console.log(`Me llamo ${this.name}`);//person2 lo sustituimos por this
+    }
+}
+// console.log(this); si printeamos this solamente en un log lo que nos sale es el localhost donde esta nuestra pagina
+person2.talk();
+person3.talk();
+console.clear();
+//------------------ Arrays -------------------
+let selectedColors = ['red','blue'];
+console.log(selectedColors, selectedColors.length, typeof selectedColors);
+
+selectedColors[2] = 'green';//si no existe lo crea
+console.log(selectedColors, selectedColors.length);
+
+selectedColors.push('violet','white');//lo añade como ultimo index es decir al final del array.(Podemos indexar varios elementos)
+console.log(selectedColors, selectedColors.length);
+
+let removedItem = selectedColors.pop()//La funcion pop es lo que vamos a utilizar para eliminar el o los ultimos elementos de un array.
+console.log(selectedColors, selectedColors.length);//Dichos elementos podemos incluso guardarlos en otra variable por si quisiesemos operar con ese dato,
+                                                   //Puesto que el return de pop es el valor que elimina e igual pasa con Shift.
+selectedColors.unshift('white');//Permite indexar un elemento al principio del array.
+console.log(selectedColors, selectedColors.length);
+
+selectedColors.shift();//Permite eliminar un elemento del principio del array.
+console.log(selectedColors, selectedColors.length);
+
+selectedColors.sort();//nos ordena todos los elementos del array alfabeticamente.
+console.log(selectedColors, selectedColors.length);
+
+console.log('El azul esta en el indice',selectedColors.indexOf('red'));//Funciona igual que los arrays y nos dice el index en el que se encuentra ese elemento.
+
+// console.log(selectedColors[selectedColors.indexOf('blue') + 1])
+
+console.log(selectedColors.slice(1,3))//Devuelve los valores que se encuentren en esa franja. Si no especificamos tamaño a eliminar lo deleteara todo desde el startpoint.
+
+console.log('Splice devuelve estos valores que ha eliminado: ',selectedColors.splice(1,3))//Splice(1,3)-> El 1 indica el Startpoint y el 3 el numero de elementos a eliminar.
+console.log('El array se queda asi: ',selectedColors);
+
+//Ejercicio de practica crear objeto boy con nombre, altura, genero y amigos como propertys//START!
+
+const boy = {
+    name:'hasbulla',
+    height:1.00,
+    gender:'male',
+    friends:['peter']
+}
+console.log(boy);
+
+boy.friends.push('abdurozik', 'kabib', 'messi');
+console.log(boy);
+
+boy.friends.unshift('speed');
+console.log(boy.friends);
+//FIN DEL EJERCICIO PRACTICO//END!!
