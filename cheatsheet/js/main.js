@@ -4,7 +4,7 @@ function saludo () {
     console.log('Has hecho click');
 }
 
-document.getElementsByTagName("a").item(2).addEventListener("click", saludo);
+// document.getElementsByTagName("a").item(2).addEventListener("click", saludo);
 
 //------------------ Depuracion / Logging -------------------
 //alert('Mensaje')
@@ -184,8 +184,8 @@ console.log(selectedColors, selectedColors.length);
 selectedColors.push('violet','white');//lo añade como ultimo index es decir al final del array.(Podemos indexar varios elementos)
 console.log(selectedColors, selectedColors.length);
 
-let removedItem = selectedColors.pop()//La funcion pop es lo que vamos a utilizar para eliminar el o los ultimos elementos de un array.
-console.log(selectedColors, selectedColors.length);//Dichos elementos podemos incluso guardarlos en otra variable por si quisiesemos operar con ese dato,
+let removedItem = selectedColors.pop()//La funcion pop es lo que vamos a utilizar para eliminar el ultimo elemento de un array.
+console.log(selectedColors, selectedColors.length);//Dicho elemento podemos incluso guardarlo en otra variable por si quisiesemos operar con ese dato,
                                                    //Puesto que el return de pop es el valor que elimina e igual pasa con Shift.
 selectedColors.unshift('white');//Permite indexar un elemento al principio del array.
 console.log(selectedColors, selectedColors.length);
@@ -211,13 +211,45 @@ const boy = {
     name:'hasbulla',
     height:1.00,
     gender:'male',
-    friends:['peter']
+    friends:['A.tate'],
+    loseFriends() {
+        this.friends.pop();
+    }
 }
 console.log(boy);
-
+// indexamos 3 elementos 
 boy.friends.push('abdurozik', 'kabib', 'messi');
 console.log(boy);
 
 boy.friends.unshift('speed');
 console.log(boy.friends);
+
+boy.loseFriends();
+console.log(boy);
 //FIN DEL EJERCICIO PRACTICO//END!!
+console.clear()
+//------------------ Condicionales / IF & ELSE -------------------
+//operadores
+//5 === '5' ->seria false porque para que sean iguales tienen que coincidir el valor y el tipo
+//5 == '5' ->seria true poque con el doble igual coincide el valor y lo da por true pq al no ser igualdad estricta no tiene que coincidir el tipo.
+//5 !== '5' -> false, desigualdad estricta, tanto en === como en !== siempre van a ser las recomendadas por codigo limpio mas que nada y para trabajar.
+//5 != '5' -> true, la desigualdad no es estricta.
+const randomNumber = 5;
+const guessedNumber = '5';
+// Procedimiento normalmente es comprobar el tipo de dato que el usuario esta introduciendo, si el tipo concuerda con lo que nosotros pedimos podemos
+// proceder a realizar la logica que necesitemos peeero si los tipos no coinciden deberiamos parsearlo al que nosotros necesitemos para poder trabajar con el.
+if (typeof randomNumber !== typeof guessedNumber) {
+    console.log("Cuidado los numeros son de tipos distintos");
+}
+
+if (randomNumber == guessedNumber && randomNumber != guessedNumber) {
+    console.log("Cuidado los numeros son de tipos distintos 1");
+}
+
+// if (randomNumber === guessedNumber) {
+//     console.log("Has acertado el numero");
+// } else if (randomNumber > guessedNumber) {
+//     console.log("El numero introducido es mayor");
+// } else {
+//     console.log("El numero introducido es menor");
+// }
