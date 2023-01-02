@@ -123,13 +123,16 @@ let person = {
     //key : value, es la forma de representar propiedades a la hora de crear un objeto.
     name: "Jhon",
     age: 30,
-    blonde: false,
+    blonde: true,
     walk: function() {//Pre ES6
         console.log('Hey estoy saltando');
     },
     jump() {
         console.log('Hey estoy saltando');
-    }//ES6
+    },//ES6
+    introduce () {
+        console.log(`Hola, me llamo ${this.name} tengo ${this.age} años y soy ${this.blonde ? 'Rubia' : 'Morena'}`)
+    }
 }
 //------ Acceso por punto / Dot notation ------
 console.log(person);
@@ -242,7 +245,7 @@ if (typeof randomNumber !== typeof guessedNumber) {
     console.log("Cuidado los numeros son de tipos distintos");
 }
 
-if (randomNumber == guessedNumber && randomNumber != guessedNumber) {
+if (randomNumber == guessedNumber && randomNumber !== guessedNumber) {
     console.log("Cuidado los numeros son de tipos distintos 1");
 }
 
@@ -253,3 +256,11 @@ if (randomNumber == guessedNumber && randomNumber != guessedNumber) {
 // } else {
 //     console.log("El numero introducido es menor");
 // }
+
+//------ Ternary Operator / Operador ternario(ternarias) ------
+
+// console.log(`Hola, me llamo ${person.name} tengo ${person.age} años y soy ` + (person.blonde ? 'Rubia' : 'Morena')); Aqui esta concatenando strings.
+person.introduce();
+
+let variable = 12 < 10 ? 'el primero es menor' : 'el primero es mayor';
+console.log(variable);
