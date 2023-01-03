@@ -264,3 +264,94 @@ person.introduce();
 
 let variable = 12 < 10 ? 'el primero es menor' : 'el primero es mayor';
 console.log(variable);
+//------ Switch ------
+let option = 3;
+switch (option) {
+    case 1:
+        //Bloque de codigo para valor 1
+        console.log("option vale 1");
+        break;
+    case 2:
+        //Bloque de codigo para valor 2
+        console.log("option vale 2");
+        break;
+    case 3:
+        //Bloque de codigo para valor 3
+        console.log("option vale 3");
+        break;
+    default:
+        console.log("otra opcion");
+        break;
+}
+
+//------------------ Functions / Funciones -------------------
+//---- Nombradas ----
+function suma(num1,num2) {
+    let result = num1 + num2;
+    return result;
+}
+
+suma(2,2)
+
+function greet(name,lastName) {
+   console.log(`Hola ${name} ${lastName}.`);
+}
+greet("Alberto","Guzman");
+
+function square(num1) {
+   return num1 * num1;
+}
+
+console.log(square(2), typeof square(2));
+
+//---- Anónimas ----
+let numbersArray = [5,51,1,15,2];
+console.log(numbersArray);
+numbersArray.sort();//Ordena segun las tablas Asci
+console.log(numbersArray);
+
+function orderNumbers (a, b) { //Logica de la funcion sort dentro de una funcion con un If
+    if (a < b) {
+        return -1;
+    } else if (a === b) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+numbersArray.sort(function (a, b) {return a - b});//La resta hace toda la logica del if de arriba y si lo metemos en una funcion anonima es lo que usaremos para ordenar arrays.
+// numbersArray.sort(orderNumbers);
+console.log(numbersArray);
+
+//Mismo proceso que con los numeros pero con objetos.
+function orderPerson (person1, person2) { 
+    if (person1.age < person2.age) {
+        return -1;
+    } else if (person1.age === person2.age) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+const person4 = {
+    name:"A",
+    age:44
+}
+
+const person5 = {
+    name:"B",
+    age:50
+}
+
+
+const person6 = {
+    name:"C",
+    age:23
+}
+
+let personArray = [person4, person5, person6];
+
+personArray.sort(orderPerson);//con la anonima -> personArray.sort(function (a,b) {return a.age - b.age})
+console.log(personArray);
