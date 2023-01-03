@@ -298,11 +298,11 @@ function greet(name,lastName) {
 }
 greet("Alberto","Guzman");
 
-function square(num1) {
-   return num1 * num1;
-}
+// function square(num1) {
+//    return num1 * num1;
+// }
 
-console.log(square(2), typeof square(2));
+// console.log(square(2), typeof square(2));
 
 //---- Anónimas ----
 let numbersArray = [5,51,1,15,2];
@@ -319,11 +319,9 @@ function orderNumbers (a, b) { //Logica de la funcion sort dentro de una funcion
         return 1;
     }
 }
-
 numbersArray.sort(function (a, b) {return a - b});//La resta hace toda la logica del if de arriba y si lo metemos en una funcion anonima es lo que usaremos para ordenar arrays.
 // numbersArray.sort(orderNumbers);
 console.log(numbersArray);
-
 //Mismo proceso que con los numeros pero con objetos.
 function orderPerson (person1, person2) { 
     if (person1.age < person2.age) {
@@ -334,24 +332,29 @@ function orderPerson (person1, person2) {
         return 1;
     }
 }
-
 const person4 = {
     name:"A",
     age:44
 }
-
 const person5 = {
     name:"B",
     age:50
 }
-
-
 const person6 = {
     name:"C",
     age:23
 }
-
 let personArray = [person4, person5, person6];
-
 personArray.sort(orderPerson);//con la anonima -> personArray.sort(function (a,b) {return a.age - b.age})
 console.log(personArray);
+console.clear();
+//---- Arrow Functions----
+const perimeterOfSquare = (side) => side * 4;
+console.log(perimeterOfSquare(5));
+
+// numbersArray.sort(function (a, b) {return a - b});
+numbersArray.sort((a, b) =>  b - a);//Ejemplo para pasar una funcion anonima a una de flecha
+console.log(numbersArray);
+
+const square = (num1) => num1 * num1;//La funcion nombrada como square esta arriba esta es la version arrow.
+console.log(square(10));
