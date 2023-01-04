@@ -363,7 +363,6 @@ console.log(square(10));
 for (let i = 0; i <= 10; i++) {
 console.log(`Indice ${i}`);
 }
-
 //Definir y rellenar un array.
 let emptyArray =[];//de 0 a 10
 for (let i = 0; i <= 10; i++) {
@@ -376,14 +375,12 @@ for (let i = 10; i >= 0; i--) {
     emptyArrayV2.push(i)
 }
 console.log(emptyArrayV2);
-
 //---- While ----
 while (true) {
     break;
 }
 
 console.log("No entra en bucle infinto");
-
 //---- ForEach ----
 function myFunction (item,index) {//Funcion nombrada
     console.log(`Indice ${index}: ${item}`);
@@ -391,12 +388,43 @@ function myFunction (item,index) {//Funcion nombrada
 
 numbersArray.forEach(myFunction);
 
-// arrayNumbers.foreach(function(value,index) { Funcion anonima
+// arrayNumbers.foreach(function(value,index) { 
 //    console.log(`Indice ${index}: ${value}`)
-//});
+// });
 
 numbersArray.forEach((item, index) => console.log(`Indice ${index} -> ${item}`))
 
 let otherArray = [];
 numbersArray.forEach(item => otherArray.push(item));//Hacemos el foreach al array que queremos copiar.
 console.log(otherArray);
+console.clear();
+//---- For Of ----
+for (let item of numbersArray) {
+    console.log(item);
+}
+//---- Continue ----
+for (let i = 0; i < 5; i++ ) {
+    if (i === 3){
+        continue //Salta a la siguiente iteracion.
+    } else {}
+    console.log("Using Continue",i);
+}
+//---- Break ----
+let i = 0;
+let k;
+mainLoop:while (true) { //Podemos dar etiquetas envolventes a los loops para indicar con un break que bucle queremos romper.
+    console.log("Outer loop", i);
+    i++;
+    k = 1;
+    while (true) {
+        console.log("Inner loop", k);
+        k++;
+        if (i === 5 && k === 5) {
+            break mainLoop;
+        } else if (k === 5) {
+            break;
+        }
+    }
+}
+
+console.clear();

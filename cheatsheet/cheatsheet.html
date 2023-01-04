@@ -20,9 +20,20 @@
     <a href="#">⇾Internal script</a>
     <a href="#">⇾External script</a>
 
+    <h1>Acceso al DOM</h1>
+    <div class="grand-parent" id="grand-parent">
+        <div class="parent" id="parent-1">
+            <div class="child" id="child-1">child-1</div>
+            <div class="child" id="child-2">child-2</div>
+        </div>
+        <div class="parent" id="parent-2">
+            <div class="child" id="child-3">child-3</div>
+            <div class="child" id="child-4">child-4</div>
+        </div>
+    </div>
     <!-- JS interno -->
-    <script>
-      /*let x = 1;
+    <!-- <script>
+      let x = 1;
         console.log("Hola Mundo!", x );
 
         function saludo () {
@@ -30,10 +41,11 @@
             console.log('Has hecho click');
         }
 
-        document.getElementsByTagName("a").item(1).addEventListener("click", saludo);*/
+        document.getElementsByTagName("a").item(1).addEventListener("click", saludo);
         
-    </script>
+    </script> -->
     <!-- JS Externo -->
-    <script src=".//js/main.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/dom.js"></script>
 </body>
 </html>
