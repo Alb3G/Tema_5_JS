@@ -183,19 +183,19 @@ console.log(selectedColors, selectedColors.length, typeof selectedColors);
 
 selectedColors[2] = 'green';//si no existe lo crea
 console.log(selectedColors, selectedColors.length);
-
+//---- Push ----
 selectedColors.push('violet','white');//lo añade como ultimo index es decir al final del array.(Podemos indexar varios elementos)
 console.log(selectedColors, selectedColors.length);
-
+//---- Pop ----
 let removedItem = selectedColors.pop()//La funcion pop es lo que vamos a utilizar para eliminar el ultimo elemento de un array.
-console.log(selectedColors, selectedColors.length);//Dicho elemento podemos incluso guardarlo en otra variable por si quisiesemos operar con ese dato,
-                                                   //Puesto que el return de pop es el valor que elimina e igual pasa con Shift.
+console.log(selectedColors, selectedColors.length);//Dicho elemento podemos incluso guardarlo en otra variable por si quisiesemos operar con ese dato, Puesto que el return de pop es el valor que elimina e igual pasa con Shift.
+//---- Unshift ----
 selectedColors.unshift('white');//Permite indexar un elemento al principio del array.
 console.log(selectedColors, selectedColors.length);
-
+//---- Shift ----
 selectedColors.shift();//Permite eliminar un elemento del principio del array.
 console.log(selectedColors, selectedColors.length);
-
+//---- Sort ----
 selectedColors.sort();//nos ordena todos los elementos del array alfabeticamente.
 console.log(selectedColors, selectedColors.length);
 
@@ -353,8 +353,50 @@ const perimeterOfSquare = (side) => side * 4;
 console.log(perimeterOfSquare(5));
 
 // numbersArray.sort(function (a, b) {return a - b});
-numbersArray.sort((a, b) =>  b - a);//Ejemplo para pasar una funcion anonima a una de flecha
-console.log(numbersArray);
+// numbersArray.sort((a, b) =>  b - a);//Ejemplo para pasar una funcion anonima a una de flecha
+// console.log(numbersArray);
 
 const square = (num1) => num1 * num1;//La funcion nombrada como square esta arriba esta es la version arrow.
 console.log(square(10));
+//------------------ Bucles -------------------
+//---- For ----
+for (let i = 0; i <= 10; i++) {
+console.log(`Indice ${i}`);
+}
+
+//Definir y rellenar un array.
+let emptyArray =[];//de 0 a 10
+for (let i = 0; i <= 10; i++) {
+    emptyArray.push(i)
+}
+console.log(emptyArray);
+
+const emptyArrayV2 =[];//de 10 a 0
+for (let i = 10; i >= 0; i--) {
+    emptyArrayV2.push(i)
+}
+console.log(emptyArrayV2);
+
+//---- While ----
+while (true) {
+    break;
+}
+
+console.log("No entra en bucle infinto");
+
+//---- ForEach ----
+function myFunction (item,index) {//Funcion nombrada
+    console.log(`Indice ${index}: ${item}`);
+};
+
+numbersArray.forEach(myFunction);
+
+// arrayNumbers.foreach(function(value,index) { Funcion anonima
+//    console.log(`Indice ${index}: ${value}`)
+//});
+
+numbersArray.forEach((item, index) => console.log(`Indice ${index} -> ${item}`))
+
+let otherArray = [];
+numbersArray.forEach(item => otherArray.push(item));//Hacemos el foreach al array que queremos copiar.
+console.log(otherArray);
