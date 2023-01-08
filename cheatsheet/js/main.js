@@ -170,7 +170,7 @@ const person3 = {
     name:"Marina",
     talk () {
         console.log(this);
-        console.log(`Me llamo ${this.name}`);//person2 lo sustituimos por this
+        console.log(`Me llamo ${this.name}`);//person3 lo sustituimos por this
     }
 }
 // console.log(this); si printeamos this solamente en un log lo que nos sale es el localhost donde esta nuestra pagina
@@ -332,18 +332,10 @@ function orderPerson (person1, person2) {
         return 1;
     }
 }
-const person4 = {
-    name:"A",
-    age:44
-}
-const person5 = {
-    name:"B",
-    age:50
-}
-const person6 = {
-    name:"C",
-    age:23
-}
+const person4 = {name:"A", age:44}
+const person5 = {name:"B", age:50}
+const person6 = {name:"C", age:23}
+
 let personArray = [person4, person5, person6];
 personArray.sort(orderPerson);//con la anonima -> personArray.sort(function (a,b) {return a.age - b.age})
 console.log(personArray);
