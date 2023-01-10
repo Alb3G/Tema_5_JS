@@ -34,6 +34,25 @@ let all = document.querySelector('*');//Estas 2 lineas es lo mismo que poner (do
 all.style.backgroundColor = "#3333";
 
 //Selectores para saltar de un contenedor a otro.
-const changeBackground = (item) => item.style.backgroundColor = '#333';
-children[0].parentNode.style.width = '150px'//parentNode afecta al padre del contenedor que tenemos seleccionado.
-changeBackground(children[1]);
+const changeBackground = (item,color) => item.style.backgroundColor = color;
+// function changeBackgroundV2(item,color) { //aparte de harcodear un color podemos pasarle tmbn el color como argumento a una funcion y elegir el que queramos o con un if podemos decirle que si no nos pasan ningun color hardcodearlo nosotros.
+//     if (color = color) {
+//         item.style.backgroundColor = color;
+//     } else {
+//         item.style.backgroundColor = '#333';
+//     }
+// }
+//----------- CHANGEBACKGROUNDV2 ----------
+// changeBackgroundV2(children[0])
+// changeBackgroundV2(children[1],"red")
+// changeBackgroundV2(parent2.children[0],'red')
+// changeBackgroundV2(parent2.children[1])
+//----------- CHANGEBACKGROUND ----------
+// changeBackground(children[0],'darkcyan')
+// changeBackground(children[1],'darkcyan');
+// changeBackground(parent2.children[1],'aquamarine')
+// changeBackground(children[0].parentNode.parentNode,'red')
+changeBackground(parent1.children[1].previousElementSibling,'cyan')
+
+// children[0].parentNode.style.width = '150px'parentNode afecta al padre del contenedor que tenemos seleccionado.
+
