@@ -88,7 +88,7 @@ parent1.appendChild(myDiv);//Añadimos el elemento al DOM.
 //parent2.appendChild(myDiv);No lo añade al DOM, lo que hace es moverlo de sitio. / No podemos tener 2 nodos iguales en sitios diferentes.
 
 let myDiv2 = myDiv.cloneNode(true);//Creamos un clon del elemento / true para que incluya el texto o todo el contenido.
-parent2.appendChild(myDiv2);//Añadimos el clon al DOM pero sin texto.
+parent2.appendChild(myDiv2);//Añadimos el clon al DOM.
 myDiv2.textContent = 'child-5';//Añadimos el texto al clon.
 
 myDiv.remove();//Eliminamos el elemento del DOM.
@@ -116,6 +116,43 @@ parent2.appendChild(Table);
 
 let link = createNode('a','new-link');
 link.textContent = 'Texto del link';
-document.body.appendChild(link);
+grandParent.appendChild(link);
 link.setAttribute('href','https://www.google.com');
 
+//----- Eventos -----
+const colorButton = document.getElementsByTagName('button')[0];
+colorButton.addEventListener("click",function (event){
+    // console.log(event);
+    // console.log(event.target);
+    // console.log(event.target.tagName);
+    
+    if (event.ctrlKey) {
+        document.body.classList.toggle('bg-red');
+    }
+
+    console.log(`X:, ${event.clientX} | Y: ${event.clientY}`);
+    console.log(`Crtl: ${event.ctrlKey} | Shift: ${event.shiftKey} | Alt: ${event.altKey}`);
+})
+
+const emailInput = document.querySelector('#useremail');
+emailInput.addEventListener('focus', inputListener);//Muchos eventos tienen un evento inverso, por ejemplo el focus tiene un blur
+emailInput.addEventListener('blur', inputListener);//El blur se ejecuta cuando el input pierde el focus y se suele utilizar para validar el input en los formularios como cuando se pone en rojo.
+
+function inputListener (event) {//No esta muy aconsejado modificar el css asi lo suyo es crear o eliminar las clases a los elementos.
+    // if (event.target.tagName == 'DIV') { Recordar bien el uso de event.target para saber que elemento esta disparando el evento.
+    //     console.log(event.target);
+    //     console.log('Tipo de evento: ',event.type);
+    // }
+
+    if (event.type == 'focus') {
+        event.target.style.border = '1px solid green';
+    } else if (event.type == 'blur') {
+        event.target.style.border = '1px solid red';
+    }
+}
+
+// const divButton = document.getElementsByClassName('container')[0];
+const divButton = document.getElementById('container');
+
+divButton.addEventListener('mouseover', inputListener);
+divButton.addEventListener('mouseout', inputListener);
