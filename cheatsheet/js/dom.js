@@ -76,4 +76,46 @@ console.log("ClassList added: ",parent1.classList);
 //----- .classList.toggle -----
 parent1.classList.toggle('bg-red')//Alterna la clase, quiere decir que si el elemento tiene la clase la va a eliminar y si el elemento no tiene dicha clase la añadira.
 
+parent1.setAttribute('name','name-del-parent-1')//Añadimos un atributo al elemento.
+console.log(parent1);
+console.clear();
+//----- Crear elementos en el DOM -----
+let myDiv = document.createElement('div');//Creamos un elemento div.
+myDiv.id = 'new-div';//Le añadimos un id.
+myDiv.classList.add('child');//Le añadimos una clase.
+myDiv.textContent = 'child-2.5';//Le añadimos un texto.
+parent1.appendChild(myDiv);//Añadimos el elemento al DOM.
+//parent2.appendChild(myDiv);No lo añade al DOM, lo que hace es moverlo de sitio. / No podemos tener 2 nodos iguales en sitios diferentes.
+
+let myDiv2 = myDiv.cloneNode(true);//Creamos un clon del elemento / true para que incluya el texto o todo el contenido.
+parent2.appendChild(myDiv2);//Añadimos el clon al DOM pero sin texto.
+myDiv2.textContent = 'child-5';//Añadimos el texto al clon.
+
+myDiv.remove();//Eliminamos el elemento del DOM.
+
+let myDiv3 = myDiv.cloneNode(false);
+myDiv3.textContent = 'Before';
+parent2.before(myDiv3);//Añadimos el clon al DOM antes del parent2.
+parent2.after(myDiv.cloneNode(false));//Añadimos el clon al DOM despues del parent2.
+
+function createNode (tag, id) {
+    let node = document.createElement(tag);//Si aqui le escribo la etiqueta 'div' en vez de tag estaría hardcodeando la etiqueta y no podria reutilizar la funcion.
+    node.id = id;
+    return node;
+}
+
+let Node = createNode('div','new-div');
+let Table = createNode('table','new-table');
+
+
+Node.textContent = 'Node';
+Node.classList.add('child');
+
+parent1.appendChild(Node);
+parent2.appendChild(Table);
+
+let link = createNode('a','new-link');
+link.textContent = 'Texto del link';
+document.body.appendChild(link);
+link.setAttribute('href','https://www.google.com');
 
