@@ -14,7 +14,7 @@ console.log(family);
 //     console.log(familyMember);
 // }
 
-const grandParent = document.getElementById("grand-parent");//Todos los selectores devuelven el HTML collection excepto el del ID que devuelve el propio elemento.
+const grandParent = document.getElementById("grand-parent");//Todos los selectores devuelven el HTML collection excepto el del ID y el queryselector que devuelven el propio elemento.
 console.log(grandParent);
 
 const parents = document.getElementsByClassName("parent");
@@ -33,8 +33,8 @@ console.log(element);
 let all = document.querySelector('*');//Estas 2 lineas es lo mismo que poner (document.querySelector('*').style.backgroundColor = "#3333";).
 all.style.backgroundColor = "#3333";
 
-//Selectores para saltar de un contenedor a otro.
-//-parentNode & children[nodeNumber] & NextElementSibling & previousElementSibling & firstElementCHild & lastElementChild
+//----- Selectores para saltar de un contenedor a otro -----.
+//--- parentNode & children[nodeNumber] & NextElementSibling & previousElementSibling & firstElementCHild & lastElementChild ---
 const changeBackground = (item,color) => item.style.backgroundColor = color;
 // function changeBackgroundV2(item,color) { //aparte de harcodear un color podemos pasarle tmbn el color como argumento a una funcion y elegir el que queramos o con un if podemos decirle que si no nos pasan ningun color hardcodearlo nosotros.
 //     if (color = color) {
@@ -135,24 +135,32 @@ colorButton.addEventListener("click",function (event){
 })
 
 const emailInput = document.querySelector('#useremail');
-emailInput.addEventListener('focus', inputListener);//Muchos eventos tienen un evento inverso, por ejemplo el focus tiene un blur
-emailInput.addEventListener('blur', inputListener);//El blur se ejecuta cuando el input pierde el focus y se suele utilizar para validar el input en los formularios como cuando se pone en rojo.
-
 function inputListener (event) {//No esta muy aconsejado modificar el css asi lo suyo es crear o eliminar las clases a los elementos.
-    // if (event.target.tagName == 'DIV') { Recordar bien el uso de event.target para saber que elemento esta disparando el evento.
-    //     console.log(event.target);
-    //     console.log('Tipo de evento: ',event.type);
-    // }
-
+    //Recordar bien el uso de event.target para saber que elemento esta disparando el evento.
+    console.log('Tipo de evento: ',event.type);
+    
     if (event.type == 'focus') {
         event.target.style.border = '1px solid green';
     } else if (event.type == 'blur') {
         event.target.style.border = '1px solid red';
     }
 }
+const changeTitle = (event) => {document.querySelectorAll('h1')[2].textContent = emailInput.value;}
 
-// const divButton = document.getElementsByClassName('container')[0];
+emailInput.addEventListener('focus', inputListener);//Muchos eventos tienen un evento inverso, por ejemplo el focus tiene un blur
+emailInput.addEventListener('blur', inputListener);//El blur se ejecuta cuando el input pierde el focus y se suele utilizar para validar el input en los formularios como cuando se pone en rojo.
+
+emailInput.addEventListener('keydown', inputListener);//keydown se ejecuta cuando se pulsa una tecla.
+emailInput.addEventListener('keyup', changeTitle);//keyup se ejecuta cuando se suelta una tecla.
+
+// const divButton = document.getElementsByClassName('container')[0];No me devuelve un Html Collection porque estoy seleccionando el indicie [0].
 const divButton = document.getElementById('container');
 
 divButton.addEventListener('mouseover', inputListener);
 divButton.addEventListener('mouseout', inputListener);
+
+function coords (e) {
+    const h1 = document.querySelectorAll('h1')[3];
+    h1.textContent = `X: ${e.clientX} | Y: ${e.clientY}`;
+}
+document.body.addEventListener('mousemove', coords);
