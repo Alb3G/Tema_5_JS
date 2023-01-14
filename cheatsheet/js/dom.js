@@ -125,10 +125,8 @@ colorButton.addEventListener("click",function (event){
     // console.log(event);
     // console.log(event.target);
     // console.log(event.target.tagName);
+    document.body.classList.toggle('bg-red');
     
-    if (event.ctrlKey) {
-        document.body.classList.toggle('bg-red');
-    }
 
     console.log(`X:, ${event.clientX} | Y: ${event.clientY}`);
     console.log(`Crtl: ${event.ctrlKey} | Shift: ${event.shiftKey} | Alt: ${event.altKey}`);
