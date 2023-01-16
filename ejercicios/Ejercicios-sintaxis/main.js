@@ -200,14 +200,73 @@ while (i < stringArray.length) {
     i++;
 }
 
-//18. Crea una función que reciba un string y un número N y devuelva el string original repetido N veces
-
+//18. Crea una función que reciba un string y un número N y devuelva el string original repetido N veces;
+function repeatString(str, n) {//MDN Web Docs del parametro repeat para los strings.
+    newString = str.repeat(n);
+    return newString;
+}
+console.log(repeatString(stringConContenido,3));
+console.log(repeatString('Me llamo Alberto ',3));
 //19. Crea una función que recibe un objeto con dos campos, votos positivos y votos negativos y que devuelva la cuenta final.
 const votos = (upVotes, downVotes) => console.log(`Los votos totales son: ${upVotes - downVotes}`);
 votos(35,15);
 
 //20. Crea una función que recibe un array de tipos de datos mezclados y que devuelva otro array con el tipo de cada uno de los elementos.
 const mixArray = ["I'm learning JS in a Bootcamp 🚀", 7.5, {}, 0, undefined, [], "codespace"];
+function fillArray(array) {
+    let newArray = [];
+    for (let i = 0; i < array.length; i++) {
+        newArray.push(typeof array[i]);
+    }
+    return newArray;
+}
+fillArray(mixArray);
+console.log(fillArray(mixArray));
 
+//21. Función que dado un array de números con formato string devuelva un array con los números ya parseados.
+let arrayEj_21 = ['1','2','3','4','5'];
+function parsedNumbers (array) {
+    for (let i = 0; i < array.length; i++) {
+        array[i] = Number(array[i])//Le decimos que para cada indice del array que nos pasan vamos a sustituir ese indice por su mismo valor pero convertido a numero.
+    }
+    return array
+}
+console.log(parsedNumbers(arrayEj_21));
 
+//22. Crea una función de flecha que devuelva “Positivo” si el número que recibe por argumento es mayor o igual que cero 
+//y “Negativo” en caso contrario. Usa el operador ternario.
+const ternaria = (number) => (number >= 0) ? 'Positivo' : 'Negativo';
+console.log(ternaria(0));
+console.log(ternaria(-1));
 
+//23. Crea una función que dado un array cualquiera y un índice, borre el elemento guardado en ese índice.
+function deleteIndexValue (array,index) {
+    array.splice(index,1)
+    console.log(array);
+}
+
+deleteIndexValue(arrayEj_21,2)
+
+//24. Usando la función del apartado anterior, crea otra función que dado un array de números y un número a
+//filtrar, devuelva un array borrando todos las apariciones de dicho número.//Resuelto por chatGpt no cuenta.
+let filterArray = [2,3,4,3,6,3,8];
+function filterNumber(array, num) {
+    return array.filter(function(item) {
+        return item !== num;
+    });
+}
+console.log(filterNumber(filterArray,3));
+
+//27. Crea una función que compare strings sin tener en cuenta las mayúsculas / minúsculas.
+function stringCompare (str1,str2) {
+   if (str1.toLowerCase() === str2.toLowerCase()){
+        return true
+    } else {
+        return false
+    }
+}
+console.log(stringCompare('Hello World','HELLO WORLD'));
+
+//28. Crea una función que convierta en mayúscula sólo la primera letra de cada palabra de un string dado. El
+//apartado 11 será de ayuda. Investigar cómo unir un array de strings en un único string.
+function capitalize () {}
