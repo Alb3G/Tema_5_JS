@@ -20,16 +20,19 @@ console.log(langArray,`Length: ${langArray.length}`);
 
 //3.Escribe una función nombrada que devuelva true si el argumento dado es de tipo boolean y false en caso contrario.
 function isBoolean (arg) {
-    if (typeof arg === typeof true ) {
-        return true;
-    }else {
-        return false;
-    }
+    return typeof arg === 'boolean' //Esta forma es menos redundante que la que yo hice, seria mas eficiente.
+    // if (typeof arg === typeof true ) {
+    //     return true;
+    // }else {
+    //     return false;
+    // }
 }
-let bool1 = true;
-let bool2 = false;
-let nobool = undefined;
+let bool1 = 'true';
+let bool2 = true;
+let nobool = 5;
 console.log(isBoolean(bool1));
+console.log(isBoolean(bool2));
+console.log(isBoolean(nobool));
 
 //4.Escribe una función que devuelva la longitud de un string recibido por argumento.
 const stringLength = (string) => console.log(`La longitud del string es de: ${string.length} caracteres`);
@@ -257,6 +260,26 @@ function filterNumber(array, num) {
 }
 console.log(filterNumber(filterArray,3));
 
+//25. Crea dos funciones que recibirán un objeto, la primera devolverá un array con los nombres de todas sus
+//propiedades. La segunda devolverá un array con los valores de dichas propiedades.
+//Investigar los métodos keys y values del prototipo de Object.
+function objectPropertys (object) {
+    let array = Object.keys(object);
+    return array;
+} 
+console.log(objectPropertys(address1));
+function objectValues (object) {
+    let array = Object.values(object);
+    return array;
+}
+console.log(objectValues(address1));
+
+//26. Crea una función que invierta un string.//ChatGpt
+function invertirString(str) {
+    return str.split("").reverse().join("");
+}
+
+console.log(invertirString(".nóicamargorp ed sedrat sal ne éfac led érasuba oN"));
 //27. Crea una función que compare strings sin tener en cuenta las mayúsculas / minúsculas.
 function stringCompare (str1,str2) {
    if (str1.toLowerCase() === str2.toLowerCase()){
@@ -268,5 +291,22 @@ function stringCompare (str1,str2) {
 console.log(stringCompare('Hello World','HELLO WORLD'));
 
 //28. Crea una función que convierta en mayúscula sólo la primera letra de cada palabra de un string dado. El
-//apartado 11 será de ayuda. Investigar cómo unir un array de strings en un único string.
-function capitalize () {}
+//apartado 11 será de ayuda. Investigar cómo unir un array de strings en un único string.//Github Copilot.
+function capitalize (str) {
+    let array = str.split(' ');
+    for (let i = 0; i < array.length; i++) {
+        array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1);
+    }
+    return array.join(' ');
+}
+
+console.log(capitalize('Esto es un string para probar la funcion capitalize'));
+//29. Crea una función en una única línea que reciba un valor lógico y devuelva el opuesto.
+function notTrue (item) {
+    if (typeof item === typeof true) {
+        return !item
+    }
+}
+let soyUnPaquetonTodavia = true;
+
+console.log(`Ultimo ejercicio: ${notTrue(soyUnPaquetonTodavia)}`);
