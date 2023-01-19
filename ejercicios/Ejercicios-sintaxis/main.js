@@ -280,27 +280,18 @@ function objectPropertys (object) {
     return array;
 } 
 console.log(objectPropertys(address1));
-function objectValues (object) {
-    let array = Object.values(object);
-    return array;
-}
+const objectValues = object => Object.values(object)
 console.log(objectValues(address1));
 
 //26. Crea una función que invierta un string.//ChatGpt
-function invertirString(str) {
-    return str.split("").reverse().join("");
-}
+const invertirString = str => str.split("").reverse().join(""); //split para convertir el string en un array, reverse par invertirlo y join para unir el array en un unico string.
 
 console.log(invertirString(".nóicamargorp ed sedrat sal ne éfac led érasuba oN"));
 //27. Crea una función que compare strings sin tener en cuenta las mayúsculas / minúsculas.
 function stringCompare (str1,str2) {
-   if (str1.toLowerCase() === str2.toLowerCase()){
-        return true
-    } else {
-        return false
-    }
+    return str1.toLowerCase() === str2.toLowerCase()
 }
-console.log(stringCompare('Hello World','HELLO WORLD'));
+console.log('Ejercicio 27: ',stringCompare('Hello World','HELLO WORLD'));
 
 //28. Crea una función que convierta en mayúscula sólo la primera letra de cada palabra de un string dado. El
 //apartado 11 será de ayuda. Investigar cómo unir un array de strings en un único string.//Github Copilot.
@@ -312,13 +303,10 @@ function capitalize (str) {
     return array.join(' ');
 }
 
-console.log(capitalize('Esto es un string para probar la funcion capitalize'));
-//29. Crea una función en una única línea que reciba un valor lógico y devuelva el opuesto.
-function notTrue (item) {
-    if (typeof item === typeof true) {
-        return !item
-    }
-}
-let soyUnPaquetonTodavia = true;
 
+console.log('Ejercicio 28:',capitalize('Esto es un string para probar la funcion capitalize'));
+//29. Crea una función en una única línea que reciba un valor lógico y devuelva el opuesto.
+const notTrue = item => typeof item === typeof true ? !item : 'No son del mismo tipo';
+let soyUnPaquetonTodavia = false;
 console.log(`Ultimo ejercicio: ${notTrue(soyUnPaquetonTodavia)}`);
+console.log(notTrue('true'));

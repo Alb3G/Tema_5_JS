@@ -7,7 +7,7 @@ paragraph.textContent = 'Lorem ipsum, dolor sit amet consectetur adipisicing eli
 
 let paragraph2 = document.createElement('p');
 paragraph2.id = 'p-2';
-paragraph2.textContent = 'lorem ipsum dolor sit amet'
+paragraph2.textContent = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum fugit obcae'
 
 mainDiv.append(paragraph, paragraph2);
 
@@ -26,35 +26,20 @@ buttonBg.addEventListener('click', function () {
 });
 
 //3.Partimos de un HTML con una lista de 3 URLs (texto) de imágenes y un element img. Al hacer click en cada URL, cambiará la imagen a la que contenga dicha URL.
-let span1 = document.getElementsByTagName('span')[0];
-let span2 = document.getElementsByTagName('span')[1];//Estos 3 podriamos tambien seleccionarlos simplemente con un listItems = getElementsByTagName('li');
-let span3 = document.getElementsByTagName('span')[2];
+const listItems = document.getElementsByTagName('li');
 let imgContainer = document.getElementsByTagName('img')[0];
+const changeImage = event => imgContainer.src = event.target.textContent;
 //Opcion que simplificaria / no estarian harcodeados los enlaces crear una funcion const changeImage = (event) => image.src = event.target.textContent;y ya solo habria que llamar al evento click con esta funcion.
-span1.addEventListener('click',function (event){
-    if (event.target == span1) {
-        imgContainer.setAttribute('src', 'img/img-ej-js-1.3.jpg')
-    }else{}
-})
-
-span2.addEventListener('click',function (event){
-    if (event.target == span2) {
-        imgContainer.setAttribute('src', 'img/img-ej-js-1.1.jpg')
-    }
-})
-
-span3.addEventListener('click',function (event){
-    if (event.target == span3) {
-        imgContainer.setAttribute('src', 'img/img-ej-js-1.2.jpg')
-    }
-})
-
+listItems[0].addEventListener('click',changeImage)
+listItems[1].addEventListener('click',changeImage)
+listItems[2].addEventListener('click',changeImage)
+//tambien podriamos seleccionar 
 //4.Añadir un input de tipo texto y un botón. Al pulsar el botón debe escribirse el texto del input en un párrafo.
 const input = document.getElementById('submitInput');
 const inputButton = document.getElementsByTagName('button')[1];
 const inputPgh = document.getElementById('inputParagraph');
 inputButton.addEventListener('click', function (event) {
-    if (inputButton == event.target) {
+    if (inputButton === event.target) {
         inputPgh.textContent = input.value 
     }
 })
@@ -64,14 +49,28 @@ const changePghContent = (event) => inputPgh.textContent = keyUpInput.value;
 keyUpInput.addEventListener('keyup',changePghContent);
 
 //5.De forma similar al anterior, pero para un textarea y validará si lo introducido es mayor de 15 caracteres.
-const textArea = document.getElementsByTagName('textarea')[0];
+const textArea = document.getElementById('valueTxtArea');
 const textAreaButton = document.getElementsByTagName('button')[2];
+const maxLength = 15;
 
-textAreaButton.addEventListener('click', function (event) {
-    if (textAreaButton == event.target || textArea.value == 15) {
-        alert('Mensaje enviado con Éxito')
-    } else {alert('Mensaje no enviado ')}
-})
+textAreaButton.addEventListener("click", function() {
+  if (textArea.value.length > maxLength) {
+    alert("El máximo de caracteres permitidos es " + maxLength);
+    textArea.value = textArea.value.substring(0, maxLength);
+  }else {
+    alert('Mensaje enviado con Exito')
+  }
+});
 
-
-
+//6. Añadir un input de tipo texto con leyenda: “Escribir un número par”. Añadir un botón. Al pulsar el botón
+//nos validará si el número es par o no. En caso negativo, cambiar los bordes del input a rojo.
+//Para revertir el estado de una propiedad, podemos utilizar el valor “revert” o dejarla vacío.
+const squareButton = document.getElementsByTagName('button')[3];
+const squareInput = document.getElementById('squareInput')
+// const squareValidation = event =>  squareInput.value % 2 === 0 ? alert('el numero es par') : alert('el numero no es par')
+function squareValidation (event) {
+    if (squareInput.value % 2 !== 0) {
+        squareInput.style.border = '1px solid red';
+    }
+};
+squareButton.addEventListener('click',squareValidation);
