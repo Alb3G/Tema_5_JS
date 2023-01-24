@@ -38,28 +38,28 @@ listItems[2].addEventListener('click',changeImage)
 const input = document.getElementById('submitInput');
 const inputButton = document.getElementsByTagName('button')[1];
 const inputPgh = document.getElementById('inputParagraph');
-inputButton.addEventListener('click', function (event) {
-    if (inputButton === event.target) {
-        inputPgh.textContent = input.value 
-    }
-})
+inputButton.addEventListener('click', () => {
+    inputPgh.textContent = input.value
+    input.value = " ";
+});
+
 //4.2 Añadir un nuevo input pero esta vez cambiará el texto con cada pulsación de tecla del usuario.
 const keyUpInput = document.getElementById('keyUpInput');
-const changePghContent = (event) => inputPgh.textContent = keyUpInput.value;
-keyUpInput.addEventListener('keyup',changePghContent);
+const changePghContent = (event) => inputPgh.textContent = keyUpInput.value;//esta arrow function podriamos ponerla como anonima dentro del addEventListener para simplificar todavia mas.
+keyUpInput.addEventListener('input',changePghContent);//Lo teniamos puesto con Keyup pero el evento input para los inputs es lo mejor.
 
 //5.De forma similar al anterior, pero para un textarea y validará si lo introducido es mayor de 15 caracteres.
 const textArea = document.getElementById('valueTxtArea');
 const textAreaButton = document.getElementsByTagName('button')[2];
-const maxLength = 15;
 
-textAreaButton.addEventListener("click", function() {
-  if (textArea.value.length > maxLength) {
-    alert("El máximo de caracteres permitidos es " + maxLength);
-    textArea.value = textArea.value.substring(0, maxLength);
-  }else {
-    alert('Mensaje enviado con Exito')
-  }
+
+textArea.addEventListener("input", event => {
+//   if (event.target.value.length > 15) {
+//     event.target.style.color = "red";
+//   }else {
+//     event.target.style.color = "green";
+//   }
+    event.target.style.color = event.target.value.length > 15 ? 'red' : 'green';
 });
 
 //6. Añadir un input de tipo texto con leyenda: “Escribir un número par”. Añadir un botón. Al pulsar el botón
@@ -67,10 +67,12 @@ textAreaButton.addEventListener("click", function() {
 //Para revertir el estado de una propiedad, podemos utilizar el valor “revert” o dejarla vacío.
 const squareButton = document.getElementsByTagName('button')[3];
 const squareInput = document.getElementById('squareInput')
-// const squareValidation = event =>  squareInput.value % 2 === 0 ? alert('el numero es par') : alert('el numero no es par')
-function squareValidation (event) {
-    if (squareInput.value % 2 !== 0) {
-        squareInput.style.border = '1px solid red';
+
+
+squareButton.addEventListener('click',() => {
+    if (squareInput.value % 2 === 0){
+        squareInput.style.border = ' ';
+    }else{
+        squareInput.style.border = '2px solid red';
     }
-};
-squareButton.addEventListener('click',squareValidation);
+});
