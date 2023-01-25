@@ -92,9 +92,38 @@ aButton.addEventListener('click',() => aFreepik.target = '_blank');//Tambien se 
 
 //9. Añadir un párrafo y un select con 5 opciones de colores: negro, blanco, rojo, amarillo, verde y azul. Al
 //seleccionar un color del select, cambiar el color del párrafo.
-const select = document.querySelector('select');
 const colorParagraph = document.querySelector('#colorParagraph');
+const options = document.querySelectorAll('option');
 
-select.addEventListener('select', (event) => {
+document.querySelector('select').addEventListener('change',event => {
     colorParagraph.style.color = event.target.value;
-});
+})
+
+//10. Incluir un botón que al pulsarlo genere un número aleatorio y mantenga en una lista actualiza el número
+//de elementos que se han generado, los que son pares y los que son impares.
+const spanList = document.querySelectorAll('span');
+const buttonEj10 = document.getElementsByTagName('button')[5];
+
+buttonEj10.onclick = () => {
+    const randomNum = Math.floor(Math.random () * 100);
+    spanList[0].textContent = randomNum;
+    spanList[1].textContent++; // Number(spanList[1].textContent) + 1;
+    randomNum % 2 === 0 ? spanList[2].textContent++ : spanList[3].textContent++;
+}
+
+//11. Construir una lista que tenga números. Añadir un input donde poder añadir números y un botón. Al pulsar
+//el botón, si el número ya existe en la lista, mostrar un mensaje de error, si no existe, lo añadirá al
+//principio.
+
+
+
+
+
+
+
+
+
+
+
+
+
