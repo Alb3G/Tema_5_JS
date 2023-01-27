@@ -15,13 +15,14 @@ mainDiv.append(paragraph, paragraph2);
 //2.Al pulsar un botón, cambiar el color del fondo del cuerpo de HTML.
 const buttonBg = document.getElementsByTagName('button')[0];
 
-buttonBg.addEventListener('click', function () {
-//    document.body.classList.toggle('color') no me funciona
-    if (document.body.style.backgroundColor == 'khaki') {
-        document.body.style.backgroundColor = 'white';
-    }else{
-        document.body.style.backgroundColor = 'khaki';
-    }
+
+buttonBg.addEventListener('click',() => {
+    document.body.classList.toggle('color');
+    // if (document.body.style.backgroundColor == 'khaki') {
+    //     document.body.style.backgroundColor = 'white';
+    // }else{
+    //     document.body.style.backgroundColor = 'khaki';
+    // }
 
 });
 
@@ -114,10 +115,36 @@ buttonEj10.onclick = () => {
 //11. Construir una lista que tenga números. Añadir un input donde poder añadir números y un botón. Al pulsar
 //el botón, si el número ya existe en la lista, mostrar un mensaje de error, si no existe, lo añadirá al
 //principio.
+let numbersList = [1,3,5,7,9];
+const ej11Input = document.getElementById('checkNumber');
+const buttonEj11 = document.getElementsByTagName('button')[6];
+const ulNumbers = document.getElementById('numbersUl');
 
+function fillList () {
+    ulNumbers.innerHTML = " ";
+    for (let number of numbersList) {
+        const newLi = document.createElement('li');
+        newLi.textContent = number;
+        ulNumbers.appendChild(newLi);
+    }
+}
+buttonEj11.addEventListener('click', () => {
+    const number = Number(ej11Input.value);
+    if (numbersList.includes(number)) {
+        alert('El número ya existe');
+    } else {
+        numbersList.unshift(number);
+        fillList();
+        console.log(numbersList);
+    }
+})
+fillList();
 
-
-
+//12. Crearemos una clase .btn en CSS que le de ciertos estilos a un botón. Al hacer click en el botón haremos
+//“toggle” o alternaremos esa clase, es decir, si está presente la quitaremos y si no está, la añadiremos.
+document.getElementById('ej12Button').onclick = e => e.target.classList.toggle('btn');
+// const ej12Button = document.getElementsByTagName('button')[7];
+// ej12Button.addEventListener('click',() => {ej12Button.classList.toggle('btn')});
 
 
 

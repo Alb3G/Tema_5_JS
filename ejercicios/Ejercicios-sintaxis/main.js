@@ -310,3 +310,10 @@ const notTrue = item => typeof item === typeof true ? !item : 'No son del mismo 
 let soyUnPaquetonTodavia = false;
 console.log(`Ultimo ejercicio: ${notTrue(soyUnPaquetonTodavia)}`);
 console.log(notTrue('true'));
+console.clear();
+//Extra del ejercicio 1
+const buttons = document.getElementsByTagName('button');
+const buttonsArray = Array.from(buttons);
+buttonsArray.forEach(button => button.addEventListener('click',function() {
+    this.classList.toggle('bg-red');
+}));
