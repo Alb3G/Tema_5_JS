@@ -177,6 +177,23 @@ const person3 = {
 person2.talk();
 person3.talk();
 console.clear();
+
+// Objecto Constructor Using Functions.
+function car (brand, color, weight, topSpeed) {
+    this.brand = brand;
+    this.color = color;
+    this.weight = weight;
+    this.topSpeed = topSpeed;
+    this.getDescription = function (params) {
+        return `This ${this.color} ${this.brand} weights ${this.weight} Kgs ` + 
+        `and can reach up to ${this.topSpeed} kms/h`;
+    }
+}
+
+const car1 = new car('mercedes','red',1200, 250);
+const car2 = new car('twingo','blue',1100, 190);
+const car3 = new car('ferrari','yellow',1500, 250)
+console.log(car1,car2,car3);
 //------------------ Arrays -------------------
 let selectedColors = ['red','blue'];
 console.log(selectedColors, selectedColors.length, typeof selectedColors);
