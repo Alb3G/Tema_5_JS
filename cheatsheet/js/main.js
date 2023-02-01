@@ -435,5 +435,49 @@ mainLoop:while (true) { //Podemos dar etiquetas envolventes a los loops para ind
         }
     }
 }
-
 console.clear();
+//Funciones de alto Nivel && Higher Order Functions.
+// Map
+let arr1 = [1, 2, 3];
+let arr2 = [];
+for (let num of arr1) {
+    arr2.push(num * 2);
+};
+// console.log(arr1, arr2);
+
+arr1 = [1, 2, 3];
+arr2 = arr1.map(num => num % 2 === 0 ? num : num + 1);
+console.log('Resultado con map => ',arr1, arr2);
+//Calcular edades segun años de nacimiento.
+const birhtYearsArr = [1990, 2000, 1998, 1960];
+const actualYear = 2023;
+const agesArr = birhtYearsArr.map(year => actualYear - year);
+console.log(birhtYearsArr,agesArr);
+// Filter => Ejemplo para lista de precios filtrar los que sean mayores de 50.
+const priceList = [124, 45, 67, 90, 34, 10, 25, 50];
+const pricesOver50Arr = priceList.filter(price => price >= 50);//La funcion deber devolver verdadero o falso para cada elemento y para cada valor que devuelva true filter lo considerara para crear el array nuevo.
+console.log(priceList,pricesOver50Arr);
+//EJemplos con arrays de Objetos.
+
+const cars = [
+    {
+        brand:'BmW',
+        year:1990,
+        plateNumber:'7041-HRZ',
+    },
+   
+    {
+        brand:'Audi',
+        year:2010,
+        plateNumber:'5021-ZLI',
+    },
+
+    {
+        brand:'Porsche',
+        year:2015,
+        plateNumber:'1195-RTG',
+    },
+
+];
+console.log(cars.filter(car => car.year > 2008));
+console.log(cars.filter(car => car.plateNumber.includes('Z')));
