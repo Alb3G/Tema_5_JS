@@ -35,10 +35,10 @@ users.forEach((user) => {
 });
 //Rellenamos la lista con todas las propiedades de un usuario cualquiera.
 function fillList (user) {
-    userDataList.innerHTML = " ";
+    userDataList.innerHTML = " ";//Nos vacia la lista cada vez que seleccionamos un usuario.
     for (const key in user) {
         const value = user[key];
-        if (typeof value !== 'function'){
+        if (typeof value !== 'function'){//para filtrar las funciones y que no nos las muestre en la lista.
             let newLi = document.createElement('li');
             newLi.innerHTML = `<b> ${key}:</b> ${value}`;
             newLi.classList.add('list-group-item');
@@ -48,6 +48,19 @@ function fillList (user) {
 }
 //Añadir listeners necesarios.
 userSelect.addEventListener('change',(event) => {
-    const selectedUser = users.find(user => user.name === userSelect.value);
+    const selectedUser = users.find(user => user.name === userSelect.value);//Nos sirve para saber que usuario esta siendo seleccionado en el select.
     fillList(selectedUser);
 });
+fillList(users[0]);//Estado inicial de la tabla para que aparezca con el primer usuario.
+//Creamos funcion para dar funcionalidad a nuestros 2 botones.
+function processProducts (event) {
+    const selectedUser = users.find(user => user.name === userSelect.value);
+    const ButtonActions = event.target === addToCartButton 
+        ? selectedUser.incrementCartProducts() 
+        : selectedUser.emptyCarProducts();
+
+    fillList(selectedUser);
+}
+
+addToCartButton.addEventListener('click',processProducts);
+emptyCartProductsButton.addEventListener('click',processProducts);
