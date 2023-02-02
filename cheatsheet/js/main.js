@@ -464,20 +464,43 @@ const cars = [
         brand:'BmW',
         year:1990,
         plateNumber:'7041-HRZ',
+        adress: {
+            street: 'asddasd',
+            city: 'Alicante',
+        },
     },
    
     {
         brand:'Audi',
-        year:2010,
+        year:2015,
         plateNumber:'5021-ZLI',
+        adress: {
+            street: 'asddasd',
+            city: 'Valencia'
+        },
     },
 
     {
         brand:'Porsche',
-        year:2015,
+        year:2010,
         plateNumber:'1195-RTG',
+        adress: {
+            street: 'asddasd',
+            city: 'Madrid'
+        },
     },
 
 ];
-console.log(cars.filter(car => car.year > 2008));
-console.log(cars.filter(car => car.plateNumber.includes('Z')));
+// console.log(cars.filter(car => car.year > 2008));
+// console.log(cars.filter(car => car.plateNumber.includes('Z')));
+// console.log(cars.filter(car => car.adress.city === 'Alicante'));
+// console.log(cars.map(car => car.brand));//Devuelve cars = [BmW, Audi, Porsche];
+// console.log(cars);
+// cars.sort((car1,car2) => car1.year - car2.year);
+// console.log(cars);
+
+//Reduce.
+const arr = [1,20,300,4000,-150,0.5];
+console.log(arr.reduce((sum,currentNumber) => sum + currentNumber));
+
+
