@@ -5,7 +5,7 @@ function randomSalaryRange (start, end) {
 // • Cargo: construido con un string plantilla (`${}`) cuyos valores sean “Empleado 1”, “Empleado 2”, etc.
 // • Rendimiento: un número aleatorio con 2 decimales entre 0 y 1.
 // • Salario: un número aleatorio entre 1250 y 4000.
-const numEmployees = [];
+let numEmployees = [];
 for (let i = 1; i <= 100; i++) {
     const employees = {
         cargo: `Empleado ${i}`,
@@ -35,28 +35,37 @@ numEmployees.sort(employeePositionOrder);
 console.log("4.Ordenados por numero de Empleado", numEmployees);
 
 // 5. Usando filter: imprimir el cargo y salario de los que cobren más de 2500€.
-console.log("5.Los que cobran +2500", numEmployees.filter(employee => employee.salario > 2500));
-
-// 6. Usando map: subir el sueldo un 25% a los que cobren menos de 1500€ y volver a hacer el punto 5.
-const employeesBonusSalary = numEmployees.map(employee => {
+console.log("5.Los que cobran +2500",);
+numEmployees
+    .filter(employee => employee.salario > 2500)
+    .forEach(employee => console.log(employee.cargo, employee.salario));
+// 6. Usando map: subir el sueldo un 25% a los que cobren menos de 1500€.
+numEmployees = numEmployees.map(employee => {
     if (employee.salario < 1500) {
         employee.salario = employee.salario * 1.25;
-    }
+    };
     return employee;
 });
-console.log("6.Aumento de sueldo de un 25%",employeesBonusSalary.filter(employee => employee.salario > 2500));
+console.log("6.Aumento de sueldo de un 25%",numEmployees);
 
 // 7. Usando reduce: Obtener el coste total de todos los sueldos para la empresa teniendo en cuenta que
 // a la empresa le cuesta tener un empleado su sueldo más un 15% por impuestos.
 const totalSalary = numEmployees.reduce((total,employee) => total + (employee.salario * 1.15),0);
-console.log("7.Coste total de todos los empleados para la empresa",totalSalary.toFixed(2));
+console.log("7.Coste total de todos los empleados para la empresa:",totalSalary.toFixed(2));
 
 // 8. Usar el método o métodos (reduce / map / filter / sort) que determinemos oportuno e imprimir en
 // cada apartado:
 // • Despedir a los que tengan un rendimiento menor a 0.3. ---- Filter ----
-const firedEmployees = numEmployees.filter(employee => employee.rendimiento < 0.3);
-console.log(firedEmployees);
+numEmployees = numEmployees.filter(employee => employee.rendimiento >= 0.3);
+console.log("Empleados despedidos con rendimiento inferior a 0.3",numEmployees);
 // • Calcular el sueldo medio de la empresa. ---- Reduce ----
-const averageSalary = numEmployees.reduce((total,employee) => (total + employee.salario) / numEmployees.length,0)
-console.log(averageSalary);
+const averageSalary = numEmployees.reduce((total,employee) => (total + employee.salario),0) / numEmployees.length;
+console.log(averageSalary.toFixed(2));
 // • Subir el sueldo de los que tengan un rendimiento superior a 0.7. ---- Map ----
+numEmployees.forEach(employee => {
+    if (employee.rendimiento > 0.7) {
+        employee.salario = employee.salario * 1.5;
+        console.log("Subido el sueldo de =>",employee.cargo);
+    };
+})
+console.log('Subida de sueldo a los que tengan rendimiento superior a 0.7', numEmployees);
