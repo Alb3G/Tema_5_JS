@@ -503,4 +503,10 @@ const cars = [
 const arr = [1,20,300,4000,-150,0.5];
 console.log(arr.reduce((sum,currentNumber) => sum + currentNumber));
 
+//Shallow and Deep copys && como copiar objetos.
+let obj1 = {property: 5};
+let obj2 = obj1; //No es una copia, es el mismo objeto con 2 nombres si modificamos uno se va ver afectado el otro tambien.
+obj2 = {...obj1};//Copia superficial, sera la que mas usemos practicamente siempre.
+obj2 = JSON.parse(JSON.stringify(obj1));//Deep Copy.
+
 
