@@ -20,8 +20,6 @@ const users = [
     new user ('Alejandro','Gomez', 'Miranda','example2@outlook.com',40,'Madrid'),
     new user ('Manuela','Jimenez', 'Pajuelo','example3@gmail.es',19,'Madrid'),
 ];
-// ForEach usado para seleccionar solamente los emails de los usuarios.
-users.forEach(user => console.log(user.email));
 // Seleccionamos los elemetos en el Dom y guardamos sus referencias.
 const userSelect = document.querySelector('#userselect');//Select.
 const userDataList = document.querySelector('#userData');//Ul.
@@ -45,7 +43,7 @@ function fillList (user) {
             userDataList.appendChild(newLi);
         }
     };
-}
+};
 //Añadir listeners necesarios.
 userSelect.addEventListener('change',(event) => {
     const selectedUser = users.find(user => user.name === userSelect.value);//Nos sirve para saber que usuario esta siendo seleccionado en el select.
