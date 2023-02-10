@@ -41,7 +41,7 @@ function fillList (user) {
             newLi.innerHTML = `<b> ${key}:</b> ${value}`;
             newLi.classList.add('list-group-item');
             userDataList.appendChild(newLi);
-        }
+        };
     };
 };
 //Añadir listeners necesarios.
