@@ -7,7 +7,7 @@ function book (id, title, author, sales, price) {
     this.price = price;
 };
 // Array of 10 books
-let library = [
+let books = [
     new book (1,'Cien años de Soledad','Gabriel Garcia Marquez',740120,20),
     new book (2,'Orgullo y Prejuicio','Jane Austen',678234,15),
     new book (3,'1984','George Orwel',239876,19.99),
@@ -22,16 +22,23 @@ let library = [
 // Select the Dom elements.
 const booksTable = document.querySelector('#tbody');
 // Function to create the content of the table.
-function fillTable (book) {
-    let newTr = document.createElement('tr');
-    newTr.innerHTML =  `<tr>
-                            <th>${book.id}</th>
-                            <td>${book.title}</td>
-                            <td>${book.author}</td>
-                            <td>${book.sales} €</td>
-                            <td>${book.price} €</td>
-                            <td><button type="button" class="btn btn-danger">Remove</button></td>
-                        </tr>`;
-    booksTable.appendChild(newTr);
+function fillTable () {
+    booksTable.innerHTML = " ";//Nos vacia la lista cada vez que seleccionamos un usuario.
+    books.forEach(book => {
+        booksTable.innerHTML += `<tr>
+                                    <td>${book.id}</td>
+                                    <td>${book.title}</td>
+                                    <td>${book.author}</td>
+                                    <td>${book.sales}</td>
+                                    <td>${book.price}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" id="${book.id}">Remove</button>
+                                    </td>
+                                </tr>`
+                                const removeBtn = document.getElementById(book.id);
+                                removeBtn.addEventListener('click', (event) => {
+                                   books = books.filter(book => book.id !== event.target.id);
+                                });
+    }); 
 };
-library.forEach(fillTable);
+fillTable();
