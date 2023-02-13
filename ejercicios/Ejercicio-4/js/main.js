@@ -21,24 +21,48 @@ let books = [
 ];
 // Select the Dom elements.
 const booksTable = document.querySelector('#tbody');
-// Function to create the content of the table.
+// Seleccionamos todos los elementos del Form.
+const titleInput = document.querySelector('#titleInput');
+const authorInput = document.querySelector('#authorInput');
+const salesInput = document.querySelector('#salesInput');
+const priceInput = document.querySelector('#priceInput');
+const submitButton = document.querySelector('#submitButton');
+// Es mas sencilla la forma de 'hardCodear' las propiedades con el InnerHtml.
 function fillTable () {
-    booksTable.innerHTML = " ";//Nos vacia la lista cada vez que seleccionamos un usuario.
-    books.forEach(book => {
-        booksTable.innerHTML += `<tr>
-                                    <td>${book.id}</td>
-                                    <td>${book.title}</td>
-                                    <td>${book.author}</td>
-                                    <td>${book.sales}</td>
-                                    <td>${book.price}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" id="${book.id}">Remove</button>
-                                    </td>
-                                </tr>`
-                                const removeBtn = document.getElementById(book.id);
-                                removeBtn.addEventListener('click', (event) => {
-                                   books = books.filter(book => book.id !== event.target.id);
-                                });
-    }); 
+    booksTable.innerHTML = "";//Vaciamos toda la tabla para actualizarla con el contenido nuevo.
+    books.forEach(book => {//Usamos un forEach para iterar sobre todos los libros del array.
+        // Creamos la Tr
+        const newTr = document.createElement('tr');
+        // Creamos las Tds con las propiedades del constructor.
+        for (let property in book) {
+            const newTd = document.createElement('td');
+            newTd.textContent = book[property];
+            newTr.appendChild(newTd);
+        };
+        // Creamos otra td para meter el boton cuando lo creemos y anexar esta td a la Tr.
+        const buttonTd = document.createElement('td');
+        // Creamos el boton con las propiedades de Bootstrap para darle forma.
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('btn','btn-danger','mb-2');
+        // Le damos el id de cada libro a cada boton para simplificar su eliminacion despues.
+        removeButton.id = book.id;
+        removeButton.textContent = 'Remove';
+        // Evento click que nos devolvera un array nuevo sin el libro que hayamos eliminado por la condicion del filter.
+        removeButton.addEventListener('click', event => {
+            books = books.filter(book => book.id != event.target.id);
+            fillTable();
+        });
+        buttonTd.appendChild(removeButton);
+        newTr.appendChild(buttonTd);
+        booksTable.appendChild(newTr); 
+    });
 };
+// Llamamos a la funcion para ejecutarla.
 fillTable();
+// Evento click que nos creara un nuevo libro con los datos del formulario y lo añadira al array de libros.
+submitButton.addEventListener('click', event => {
+    event.preventDefault();//preventDefault evita todos los comportamientos por defecto de los elementos del DOM.
+    const newBook = new book (books.length + 1, titleInput.value, authorInput.value, salesInput.value, priceInput.value);
+    books.push(newBook);
+    fillTable();
+});
