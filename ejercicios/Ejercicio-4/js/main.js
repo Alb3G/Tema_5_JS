@@ -27,6 +27,7 @@ const authorInput = document.querySelector('#authorInput');
 const salesInput = document.querySelector('#salesInput');
 const priceInput = document.querySelector('#priceInput');
 const submitButton = document.querySelector('#submitButton');
+const form = document.querySelector('#form');
 // Es mas sencilla la forma de 'hardCodear' las propiedades con el InnerHtml.
 function fillTable () {
     booksTable.innerHTML = "";//Vaciamos toda la tabla para actualizarla con el contenido nuevo.
@@ -62,7 +63,11 @@ fillTable();
 // Evento click que nos creara un nuevo libro con los datos del formulario y lo añadira al array de libros.
 submitButton.addEventListener('click', event => {
     event.preventDefault();//preventDefault evita todos los comportamientos por defecto de los elementos del DOM.
-    const newBook = new book (books.length + 1, titleInput.value, authorInput.value, salesInput.value, priceInput.value);
-    books.push(newBook);
+    newId = books[books.length - 1].id + 1;//Creamos un nuevo id para el nuevo libro que sera el id del ultimo libro + 1.
+    // Añadimos el nuevo libro al array de libros.
+    books.push(new book (newId, titleInput.value, authorInput.value, salesInput.value, priceInput.value));
+    // Llamamos a la funcion para actualizar la tabla con el nuevo libro.
     fillTable();
+    // Vaciamos los inputs del formulario.
+    form.reset();
 });
