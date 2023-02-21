@@ -23,30 +23,32 @@
         <tbody id="tbody"></tbody>
     </table>
     <h2 class="container">Add a new Book</h2>
-    <form class="container row mx-4" id="form">
+    <form class="container" id="form">
         <!-- Title -->
         <div class="mb-3">
           <label for="titleInput" class="form-label">Title</label>
           <input type="text" class="form-control" id="titleInput" aria-describedby="emailHelp" placeholder="Title">
         </div>
-        <!-- Authors -->
-        <div class="mb-3 col-md-4">
-            <label for="authorInput" class="form-label">Author</label>
-            <input type="text" class="form-control" id="authorInput" aria-describedby="emailHelp" placeholder="Enter Author">
+        <div class="row">
+            <!-- Authors -->
+            <div class="mb-3 col-md-4">
+                <label for="authorInput" class="form-label">Author</label>
+                <input type="text" class="form-control" id="authorInput" aria-describedby="emailHelp" placeholder="Enter Author">
+            </div>
+            <!-- Sales -->
+            <div class="mb-3 col-md-4">
+                <label for="salesInput" class="form-label">Sales</label>
+                <input type="number" class="form-control" id="salesInput" aria-describedby="emailHelp" placeholder="Enter Sales">
+            </div>
+            <!-- Price -->
+            <div class="mb-3 col-md-4">
+                <label for="priceInput" class="form-label">Price</label>
+                <input type="number" class="form-control" id="priceInput" placeholder="Enter ">
+            </div>
+            <!-- Submit -->
+            <div class="col-12"><button type="submit" class="btn btn-primary" id="submitButton">Add Book</button></div>
         </div>
-        <!-- Sales -->
-        <div class="mb-3 col-md-4">
-            <label for="salesInput" class="form-label">Sales</label>
-            <input type="number" class="form-control" id="salesInput" aria-describedby="emailHelp" placeholder="Enter Sales">
-        </div>
-        <!-- Price -->
-        <div class="mb-3 col-md-4">
-          <label for="priceInput" class="form-label">Price</label>
-          <input type="number" class="form-control" id="priceInput" placeholder="Enter ">
-        </div>
-        <!-- Submit -->
-        <div class="col-12"><button type="submit" class="btn btn-primary" id="submitButton">Add Book</button></div>
-      </form>
+    </form>
     <!-- scripts -->
     <script src="js/main.js"></script>
 </body>
