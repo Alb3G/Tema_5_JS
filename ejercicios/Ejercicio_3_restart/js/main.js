@@ -31,3 +31,28 @@ console.log('5.Cobran +2500');
 numEmployees
 .filter(employee => employee.salario > 2500)
 .forEach(employee => console.log(employee.cargo,employee.salario));
+//
+numEmployees = numEmployees.map(employee => {
+    if (employee.salario < 1500 ) {
+        employee.salario = employee.salario * 1.25;
+    }
+    return employee;
+});
+console.log('6. Subida de sueldo de 1.25',numEmployees);
+//
+const totalCostPerEmployee = numEmployees.reduce((total,employee) => total + (employee.salario * 1.15),0);
+console.log('7. Coste Total de la empresa por empleados',totalCostPerEmployee.toFixed(0));
+//
+numEmployees = numEmployees.filter(employee => employee.rendimiento > 0.3);
+console.log('8.1 Despedidos los que tienen menos del 0.3 en rendimiento',numEmployees);
+//
+const averageSalary = numEmployees.reduce((sum,employee) => sum + employee.salario,0) / numEmployees.length;
+console.log('8.2 Sueldo medio',averageSalary.toFixed(0));
+//
+numEmployees.forEach(employee => {
+    if (employee.rendimiento > 0.7) {
+        employee.salario = employee.salario * 1.5;
+        console.log("Subido el sueldo de =>",employee.cargo);
+    }
+});
+console.log('8.3 Sueldo aumentado a los que tienen rendimiento > 0.7',numEmployees);
