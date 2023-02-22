@@ -20,6 +20,41 @@ let books = [
 ];
 //
 const booksTableData = document.querySelector('#booksTbody');
+const titleInput = document.querySelector('#titleInput');
+const authorInput = document.querySelector('#authorInput');
+const salesInput = document.querySelector('#salesInput');
+const priceInput = document.querySelector('#priceInput');
+const submitButton = document.querySelector('#submitButton');
+const bookForm = document.querySelector('#form');
 //
+function fillTable () {
+    booksTableData.innerHTML = " ";
+    books.forEach(book => {
+        booksTableData.innerHTML += `<tr>
+                                        <td>${book.id}</td>
+                                        <td>${book.title}</td>
+                                        <td>${book.author}</td>
+                                        <td>${book.sales}</td>
+                                        <td>${book.price}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger" id="${book.id}">Danger</button>
+                                        </td>
+                                    </tr>`
 
+                                    booksTableData.querySelectorAll('button').forEach(button => {
+                                        button.addEventListener('click', event => {
+                                            books = books.filter(book => book.id != event.target.id);
+                                            fillTable();
+                                        });
+                                    });
+    });
+};
+fillTable();
 //
+submitButton.addEventListener('click', event => {
+    event.preventDefault();
+    newId = books[books.length - 1].id + 1;
+    books.push(new book(newId,titleInput.value,authorInput.value,salesInput.value,priceInput.value));
+    fillTable();
+    bookForm.reset();
+});
