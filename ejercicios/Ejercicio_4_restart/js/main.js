@@ -18,6 +18,7 @@ let books = [
     new book (9,'Guerra & Paz','Leon Tolstoi',712532,39.99),
     new book (10,'Grandes Esperanzas','Charles Dickens',913456,29.95),
 ];
+let displayedBooks = [...books];
 //
 const booksTableData = document.querySelector('#booksTbody');
 const titleInput = document.querySelector('#titleInput');
@@ -26,6 +27,7 @@ const salesInput = document.querySelector('#salesInput');
 const priceInput = document.querySelector('#priceInput');
 const submitButton = document.querySelector('#submitButton');
 const bookForm = document.querySelector('#form');
+const filterInput = document.querySelector('#filterInput');
 //
 function fillTable () {
     booksTableData.innerHTML = " ";
@@ -34,27 +36,36 @@ function fillTable () {
                                         <td>${book.id}</td>
                                         <td>${book.title}</td>
                                         <td>${book.author}</td>
-                                        <td>${book.sales}</td>
-                                        <td>${book.price}</td>
+                                        <td>${book.sales} $</td>
+                                        <td>${book.price} $</td>
                                         <td>
-                                            <button type="button" class="btn btn-danger" id="${book.id}">Danger</button>
+                                            <button type="button" class="btn btn-danger" id="${book.id}">Remove</button>
                                         </td>
                                     </tr>`
-
-                                    booksTableData.querySelectorAll('button').forEach(button => {
-                                        button.addEventListener('click', event => {
-                                            books = books.filter(book => book.id != event.target.id);
-                                            fillTable();
-                                        });
-                                    });
     });
 };
-fillTable();
-//
-submitButton.addEventListener('click', event => {
+function removeBook () {
+    booksTableData.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', event => {
+            books = books.filter(book => book.id != event.target.id);
+            fillTable();
+        });
+    });
+};
+function addNewBook (event) {
     event.preventDefault();
     newId = books[books.length - 1].id + 1;
     books.push(new book(newId,titleInput.value,authorInput.value,salesInput.value,priceInput.value));
     fillTable();
     bookForm.reset();
-});
+};
+function filterTable () {
+    displayedBooks = books.filter(book => book.title.toLowerCase().includes(filterInput.value.toLowerCase()));
+    fillTable();
+};
+//
+booksTableData.addEventListener('click',removeBook);
+submitButton.addEventListener('click',addNewBook);
+filterInput.addEventListener('input',filterTable);
+//
+fillTable();
