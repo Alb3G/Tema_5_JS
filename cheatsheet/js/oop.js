@@ -88,13 +88,22 @@ class Animal {
         this.sound = sound;
     };
     makeSound() {
-        console.log(`This ${this.type} named ${this.name} does ${this.sound}`);
+        console.log(`This ${this.type} named ${this.name} goes ${this.sound}`);
     };
+    static compareAnimals(animal1,animal2) {
+        return animal1.type === animal2.type;
+    }
 };
+
+class Feline extends Animal {
+    constructor(type,name) {
+        super(type, name, "miau");
+    };
+}
 
 class cat extends Animal {
     constructor(name) {
-        super("cat", name, "miau");
+        super("cat", name);
     };
 };
 
@@ -103,3 +112,13 @@ class dog extends Animal {
         super("dog", name, "woof");
     };
 };
+
+const conBotas = new cat ('con Botas');
+const ares = new dog ('ares');
+const baloo = new dog ('baloo');
+
+conBotas.makeSound();
+ares.makeSound();
+baloo.makeSound();
+
+console.log(Animal.compareAnimals(ares,baloo));
