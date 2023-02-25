@@ -1,9 +1,11 @@
-function book (id,title,author,sales,price){
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.sales = sales;
-    this.price = price;
+class book {
+    constructor(id, title, author, sales, price) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.sales = sales;
+        this.price = price;
+    }
 };
 //
 let books = [
@@ -34,7 +36,7 @@ const filterInput = document.querySelector('#filterInput');
 //
 function updateTable () {
     booksTableData.innerHTML = " ";
-    books.forEach(book => {
+    displayedBooks.forEach(book => {
         booksTableData.innerHTML += `<tr>
                                         <td>${book.id}</td>
                                         <td>${book.title}</td>
@@ -64,6 +66,7 @@ function addNewBook (event) {
     event.preventDefault();
     newId = books[books.length - 1].id + 1;
     books.push(new book(newId,titleInput.value,authorInput.value,salesInput.value,priceInput.value));
+    displayedBooks.push(new book(newId,titleInput.value,authorInput.value,salesInput.value,priceInput.value));
     updateTable();
     bookForm.reset();
 };
