@@ -19,8 +19,11 @@ let books = [
     new book (10,'Grandes Esperanzas','Charles Dickens',913456,29.95),
 ];
 let displayedBooks = [...books];
+let ascendingOrder = true;
 //
 const booksTableData = document.querySelector('#booksTbody');
+const tfoot = document.getElementsByTagName('tfoot')[0];
+const priceHeader = document.querySelector('#priceHeader');
 const titleInput = document.querySelector('#titleInput');
 const authorInput = document.querySelector('#authorInput');
 const salesInput = document.querySelector('#salesInput');
@@ -29,7 +32,7 @@ const submitButton = document.querySelector('#submitButton');
 const bookForm = document.querySelector('#form');
 const filterInput = document.querySelector('#filterInput');
 //
-function fillTable () {
+function updateTable () {
     booksTableData.innerHTML = " ";
     books.forEach(book => {
         booksTableData.innerHTML += `<tr>
@@ -43,29 +46,49 @@ function fillTable () {
                                         </td>
                                     </tr>`
     });
+
+    updateTotalPrice();
 };
-function removeBook () {
-    booksTableData.querySelectorAll('button').forEach(button => {
-        button.addEventListener('click', event => {
-            books = books.filter(book => book.id != event.target.id);
-            fillTable();
-        });
-    });
+function updateTotalPrice () {
+    const totalPrice = displayedBooks.reduce((priceSum,book) => priceSum + book.price,0);
+    tfoot.textContent = `Total Price: ${totalPrice.toFixed(2)}$`;
+};
+function removeBook (e) {
+    if(e.target.tagName === "BUTTON") {
+        books = books.filter(book => book.id != e.target.id);
+        displayedBooks = displayedBooks.filter(book => book.id != e.target.id);
+        updateTable();
+    }
 };
 function addNewBook (event) {
     event.preventDefault();
     newId = books[books.length - 1].id + 1;
     books.push(new book(newId,titleInput.value,authorInput.value,salesInput.value,priceInput.value));
-    fillTable();
+    updateTable();
     bookForm.reset();
 };
-function filterTable () {
-    displayedBooks = books.filter(book => book.title.toLowerCase().includes(filterInput.value.toLowerCase()));
-    fillTable();
+function filterTable (e) {
+    displayedBooks = books.filter(book => {
+        const lowerTitle = book.title.toLowerCase();
+        const lowerInputValue = e.target.value.toLowerCase();
+
+        return lowerTitle.includes(lowerInputValue);
+    });
+    updateTable();
+};
+
+function orderTableByPrice () {
+    ascendingOrder = !ascendingOrder;
+    displayedBooks.sort((book1,book2) => {
+        return ascendingOrder ? book1.price - book2.price : book2.price - book1.price
+    });
+    document.querySelector("span").innerHTML = ascendingOrder ? "&uarr;" : "&darr;"
+    updateTable();
 };
 //
 booksTableData.addEventListener('click',removeBook);
 submitButton.addEventListener('click',addNewBook);
 filterInput.addEventListener('input',filterTable);
+priceHeader.addEventListener("click", orderTableByPrice);
 //
-fillTable();
+updateTable();
