@@ -11,14 +11,14 @@ class book {
 let books = [
     new book (1,'Cien años de Soledad','Gabriel Garcia Marquez',740120,20),
     new book (2,'Orgullo y Prejuicio','Jane Austen',678234,15),
-    new book (3,'1984','George Orwel',239876,19.99),
+    new book (3,'1984','George Orwel',239876,19),
     new book (4,'Odisea','Homero',851257,35),
-    new book (5,'Lolita','Vladimir Nabokov',134589,9.99),
+    new book (5,'Lolita','Vladimir Nabokov',134589,9),
     new book (6,'Cumbres Borrascosas','Emily Bronte',256435,20),
     new book (7,'Moby-Dick','Herman Melville',871312,18),
     new book (8,'Las mil y una Noches','Mario Vargas Llosa',543879,25),
-    new book (9,'Guerra & Paz','Leon Tolstoi',712532,39.99),
-    new book (10,'Grandes Esperanzas','Charles Dickens',913456,29.95),
+    new book (9,'Guerra & Paz','Leon Tolstoi',712532,39),
+    new book (10,'Grandes Esperanzas','Charles Dickens',913456,29),
 ];
 let displayedBooks = [...books];
 let ascendingOrder = true;
@@ -53,7 +53,7 @@ function updateTable () {
 };
 function updateTotalPrice () {
     const totalPrice = displayedBooks.reduce((priceSum,book) => priceSum + book.price,0);
-    tfoot.textContent = `Total Price: ${totalPrice.toFixed(2)}$`;
+    tfoot.textContent = `Total Price: ${totalPrice}$`;
 };
 function removeBook (e) {
     if(e.target.tagName === "BUTTON") {
@@ -65,8 +65,8 @@ function removeBook (e) {
 function addNewBook (event) {
     event.preventDefault();
     newId = books[books.length - 1].id + 1;
-    books.push(new book(newId,titleInput.value,authorInput.value,salesInput.value,priceInput.value));
-    displayedBooks.push(new book(newId,titleInput.value,authorInput.value,salesInput.value,priceInput.value));
+    books.push(new book(newId,titleInput.value,authorInput.value,Number(salesInput.value),Number(priceInput.value)));
+    displayedBooks.push(new book(newId,titleInput.value,authorInput.value,Number(salesInput.value),Number(priceInput.value)));
     updateTable();
     bookForm.reset();
 };
@@ -83,7 +83,9 @@ function filterTable (e) {
 function orderTableByPrice () {
     ascendingOrder = !ascendingOrder;
     displayedBooks.sort((book1,book2) => {
-        return ascendingOrder ? book1.price - book2.price : book2.price - book1.price
+        return ascendingOrder 
+        ? book1.price - book2.price 
+        : book2.price - book1.price
     });
     document.querySelector("span").innerHTML = ascendingOrder ? "&uarr;" : "&darr;"
     updateTable();
