@@ -53,9 +53,12 @@ prevButton.addEventListener('click',changePage);
 // 6.2 Envio Peticion Post a la API https://reqres.in/api/login.
 // Constantes.
 const LOGIN_URL = "https://reqres.in/api/login";
+const USERS_URL = " https://reqres.in/api/users"
+
 const emailInput = document.querySelectorAll('input')[0];
 const passInput = document.querySelectorAll('input')[1];
 document.querySelector('#loginButton').addEventListener('click',login)
+const userList = document.querySelector('#userList');
 
 // Functions.
 function login(event) {
@@ -70,4 +73,26 @@ function login(event) {
         headers: {"content-type": "application/json"},
         body :JSON.stringify(userInfo),
     };
+
+    fetch(LOGIN_URL,config)
+        .then(response => response.json())
+        .then(data => data.error ? alert(data.error) : fetchaAllUsers()
+    );
+};
+
+async function fetchaAllUsers() {
+    let response = await fetch(USERS_URL);
+    let data = await response.json()
+
+    // fetch(USERS_URL).then(response => response.json()).then(data => console.log(data));
+    let users = [];
+    for (let page = 1; page <= data.total_pages; page++) {
+        response = await fetch(`${USERS_URL}?page${page}`)
+        let newData = await response.json();
+        users = users.concat(newData.data); // users = [...users, ...newData];
+    };
+
+    users.forEach(user => {
+        userList.innerHTML += `<li>${user.email}</li>`
+    });
 };
