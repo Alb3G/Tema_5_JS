@@ -49,3 +49,25 @@ function changePage(event) {
 // Listeners.
 nextButton.addEventListener('click',changePage);
 prevButton.addEventListener('click',changePage);
+
+// 6.2 Envio Peticion Post a la API https://reqres.in/api/login.
+// Constantes.
+const LOGIN_URL = "https://reqres.in/api/login";
+const emailInput = document.querySelectorAll('input')[0];
+const passInput = document.querySelectorAll('input')[1];
+document.querySelector('#loginButton').addEventListener('click',login)
+
+// Functions.
+function login(event) {
+    event.preventDefault();
+    const userInfo = {
+        email: emailInput.value ,
+        password: passInput.value
+    };
+
+    const config = {
+        method:"POST",
+        headers: {"content-type": "application/json"},
+        body :JSON.stringify(userInfo),
+    };
+};

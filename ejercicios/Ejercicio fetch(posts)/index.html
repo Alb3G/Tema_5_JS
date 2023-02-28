@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini Ejercicio De Fetch</title>
+    <style>
+        .displayBlock {
+            display: block;
+            margin-top: 5px;
+        };
+    </style>
 </head>
 <body>
     <div id="data"></div>
@@ -13,6 +19,14 @@
         <span id="page">&larr; &rarr;</span>
         <button id="nextButton">Next &rarr;</button>
     </div>
+    <h2>Login y paginacion desde el servidor</h2>
+    <form>
+        <input type="email" placeholder="Introduce tu emai" value="eve.holt@reqres.in">
+        <input type="password" placeholder="**************" value="cityslicka">
+        <button id="loginButton" class="displayBlock">Iniciar sesion</button>
+    </form>
+    <div style="height: 500px;"></div>
+
     <!-- scripts -->
     <script src="js/fetch.js"></script>
 </body> 
