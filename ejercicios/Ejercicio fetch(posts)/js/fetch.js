@@ -91,8 +91,24 @@ async function fetchaAllUsers() {
         let newData = await response.json();
         users = users.concat(newData.data); // users = [...users, ...newData];
     };
-
+    userList.innerHTML = ""
     users.forEach(user => {
         userList.innerHTML += `<li>${user.email}</li>`
+    });
+};
+
+// Alternativa para recuperar todas las paginas de una API utilizando .then().
+let users = [];
+function fetchaAllUsersV2(URL) {
+    fetch(URL)
+    .then(response => response.json())
+    .then(newData => {
+        users = users.concat(newData.data);
+        if (newData.page < newData.total_pages) {
+            fetchaAllUsersV2(`${USERS_URL}?page=${newData.page + 1}`)
+        }else {
+            userList.innerHTML = "";
+            users.forEach(user => userList.innerHTML += `<li>${user.email}</li>`)
+        };
     });
 };
